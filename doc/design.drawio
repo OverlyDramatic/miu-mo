@@ -1,0 +1,84 @@
+<mxfile host="53cf77f5-16bf-4433-882b-8a0f9f1f2679" modified="2020-07-23T08:42:44.159Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.2 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="fY0x_vvxT6vn6rAUlLF5" version="13.1.3">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
+        <mxGraphModel dx="1151" dy="791" grid="1" gridSize="12" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="MUSIC ORDER" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="36" width="720" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="MUSIC FILE INFO GETTER" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="396" width="120" height="63" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="FILE TREE MAP" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="336" y="636" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="DIRECT MAKER" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="397.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="MUSIC FILE DATA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;strokeColor=#B09500;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="756" width="720" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="VIEW" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="276" width="720" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="ACTION" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="516" width="720" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="FILE COPYER" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="336" y="397.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="FILE SCANER" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="397.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="ORIGIN FILE" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="672" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="TARGET FILE" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="672" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="LOG" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="636" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="POUCHDB" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="336" y="708" width="288" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="31" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="48" y="222" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="VUETIFY" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="228" width="720" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="JS MEDIA TAGS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="468" width="120" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="NODE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6d8764;strokeColor=#3A5431;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="468" width="408" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="CATALOG" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="156" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="QUERY" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="156" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="LIST" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="336" y="156" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="ACTION" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="156" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="STATUS" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="624" y="156" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="ORIGIN" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="336" y="600" width="48" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="TARGET" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="396" y="600" width="48" height="24" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
