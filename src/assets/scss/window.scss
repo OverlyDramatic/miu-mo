@@ -1,0 +1,15 @@
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  &::-webkit-scrollbar {
+    display: none; // * hide scroll
+  }
+}
+
+.app-header-bar {
+  -webkit-app-region: drag;
+  button {
+    -webkit-app-region: no-drag;
+  }
+}

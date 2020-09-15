@@ -1,3 +1,9 @@
 module.exports = {
-  transpileDependencies: ['vuetify']
+  transpileDependencies: ['vuetify'],
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true,
+      mainProcessWatch: ['src/main/window.background.js']
+    }
+  }
 }

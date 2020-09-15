@@ -5,6 +5,9 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+// * 引入window操作相关主进程js文件 import min process file with window control functions
+import { initWindowControl } from '@/main/window.background'
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -17,8 +20,11 @@ protocol.registerSchemesAsPrivileged([
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
+    resizable: true,
+    fullscreenable: true,
+    frame: false, // * 无边框窗口 no frame window
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
@@ -37,8 +43,11 @@ function createWindow() {
   }
 
   win.on('closed', () => {
+    console.log('closed?')
     win = null
   })
+
+  initWindowControl(win)
 }
 
 // Quit when all windows are closed.
