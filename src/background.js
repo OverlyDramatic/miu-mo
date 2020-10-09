@@ -7,6 +7,9 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // * 引入window操作相关主进程js文件 import min process file with window control functions
 import { initWindowControl } from '@/main/window.background'
+import { initAction } from '@/main/action/index'
+// * 引入NeDB数据库
+import { initNeDB } from '@/main/database.background'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -48,6 +51,8 @@ function createWindow() {
   })
 
   initWindowControl(win)
+  initAction(win)
+  initNeDB()
 }
 
 // Quit when all windows are closed.

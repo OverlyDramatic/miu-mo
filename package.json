@@ -15,7 +15,8 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.5",
-    "pouchdb": "^7.2.1",
+    "jsmediatags": "^3.9.3",
+    "nedb": "^1.8.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11",
