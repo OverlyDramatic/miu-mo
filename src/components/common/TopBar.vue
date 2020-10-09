@@ -3,7 +3,7 @@
     <v-app-bar-nav-icon
       @click="$store.commit('CHANGE-NAV-BAR')"
     ></v-app-bar-nav-icon>
-    <v-toolbar-title>Music Order</v-toolbar-title>
+    <v-toolbar-title>{{ $store.state.app.appName }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <!-- 最小化窗口 minimize the window -->
     <v-btn icon @click="minimizeTheWindow">

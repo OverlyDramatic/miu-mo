@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     ipcRenderer.on('reply-dir', function(event, arg) {
-      console.log(event, arg)
+      console.log(arg)
     })
   }
 }

@@ -7,7 +7,7 @@ module.exports = {
         'src/main/window.background.js',
         'src/main/database.background.js',
         'src/main/action/index.js',
-        'src/main/action/openDir.background.js'
+        'src/main/action/file.background.js'
       ]
     }
   }
