@@ -1,6 +1,7 @@
 import { ipcMain, dialog } from 'electron'
 import { promises as fsPromises } from 'fs'
 import { normalize as _normalize, join as _join } from 'path'
+import log from 'electron-log'
 
 const regAudioFile = /.+(\.mp3|\.Mp3|\.flac)$/
 
@@ -33,10 +34,11 @@ export async function readDirs(dir) {
   const pathSet = new Set()
   try {
     const fileArray = await fsPromises.readdir(_dir)
-    // TODO log empth dir 用日志记录空目录
+    // ! log empth dir 日志记录空目录
     if (!fileArray.length) {
-      console.log('nothing', _dir)
+      log.info('empty', _dir)
     }
+
     for (const index in fileArray) {
       const file = fileArray[index]
       const _file = _join(_dir, file)
@@ -53,13 +55,13 @@ export async function readDirs(dir) {
         }
         pathSet.add(_dir)
       } else {
-        // TODO log not audio file 用日志记录文件不是音频文件
-        console.log('not audio file', _file, '\n')
+        // ! 日志记录文件不是音频文件
+        log.info('not audio file', _file)
       }
     }
     return Array.from(pathSet)
   } catch (err) {
-    console.error(err)
+    log.error(err)
     return Array.from(pathSet)
   }
 }

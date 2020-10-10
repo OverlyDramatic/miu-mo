@@ -9,7 +9,9 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 import { initWindowControl } from '@/main/window.background'
 import { initAction } from '@/main/action/index'
 // * 引入NeDB数据库
-import { initNeDB } from '@/main/database.background'
+import { initNeDB } from '@/main/database/database.background'
+// * 初始化日志模块
+import { initLog } from '@/main/log/log.background.js'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -53,6 +55,7 @@ function createWindow() {
   initWindowControl(win)
   initAction(win)
   initNeDB()
+  initLog()
 }
 
 // Quit when all windows are closed.
