@@ -2,6 +2,7 @@ import { ipcMain, dialog } from 'electron'
 import { promises as fsPromises } from 'fs'
 import { normalize as _normalize, join as _join } from 'path'
 import log from 'electron-log'
+import { useDB } from '@/main/database/database.background'
 
 const regAudioFile = /.+(\.mp3|\.Mp3|\.flac)$/
 
@@ -23,6 +24,16 @@ function openDirDialog(currentWindow) {
         return null
       }
       const fileData = await readDirs(res.filePaths[0])
+      // * 写入数据库 write into database
+      const fileDataMap = fileData.map(item => {
+        return {
+          path: item
+        }
+      })
+      useDB().insert(fileDataMap, function(err, newDocs) {
+        console.log(err)
+        console.log(newDocs)
+      })
       return fileData
     })
 }
