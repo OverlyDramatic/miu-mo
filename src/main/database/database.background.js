@@ -1,22 +1,40 @@
 // * NeDB数据库
 
 import path from 'path'
-import Datastore from 'nedb'
+import Datastore from 'nedb-promises'
 
 let _db = null
 
 export function initNeDB() {
-  const dbFileName = path.join(process.cwd(), process.env.VUE_APP_DATA_PATH)
+  const dbFileNameOrigin = path.join(
+    process.cwd(),
+    process.env.VUE_APP_DATA_ORIGIN_FILE_PATH
+  )
+  const dbFileNameTarget = path.join(
+    process.cwd(),
+    process.env.VUE_APP_DATA_TARGET_FILE_PATH
+  )
   // * 初始化NeDB数据库
-  const db = new Datastore({
-    filename: dbFileName,
+  const dbOrigin = new Datastore({
+    filename: dbFileNameOrigin,
     autoload: true
   })
-  _db = db
-  return db
+  const dbTarget = new Datastore({
+    filename: dbFileNameTarget,
+    autoload: true
+  })
+  _db = {
+    dbOrigin,
+    dbTarget
+  }
+  return _db
 }
 
-export function useDB() {
-  console.log(_db)
+export function useDB(dbname) {
+  if (!_db || Object.keys(_db).length === 0) {
+    return null
+  } else if (dbname) {
+    return _db[dbname]
+  }
   return _db
 }

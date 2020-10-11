@@ -3,11 +3,16 @@
 ```js
 [
   {
-    filename: 'music.mp3',
-    path: 'D:/abc/defg/music.mp3',
-    title: 'music',
-    artist: 'abba',
-    album: 'baab'
+    rootPath: 'D:/abc',
+    files: [
+      {
+        filename: 'music.mp3',
+        path: 'D:/abc/defg/music.mp3',
+        title: 'music',
+        artist: 'abba',
+        album: 'baab'
+      }
+    ]
   }
 ]
 ```
@@ -15,7 +20,12 @@
 dirs under the root path that have audio files
 ```js
 [
-  'D:/abc',
-  'D:/abc/defg'
+  {
+    rootPath: 'D:/abc',
+    paths: [
+      'D:/abc',
+      'D:/abc/defg'
+    ]
+  }
 ]
 ```

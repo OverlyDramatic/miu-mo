@@ -14,7 +14,7 @@ export function initOpenDir(currentWindow) {
 }
 
 // * open dir dialog
-function openDirDialog(currentWindow) {
+async function openDirDialog(currentWindow) {
   return dialog
     .showOpenDialog(currentWindow, {
       properties: ['openDirectory']
@@ -23,18 +23,25 @@ function openDirDialog(currentWindow) {
       if (res.canceled) {
         return null
       }
-      const fileData = await readDirs(res.filePaths[0])
+      const _path = res.filePaths[0]
+      const fileData = await readDirs(_path)
       // * 写入数据库 write into database
-      const fileDataMap = fileData.map(item => {
-        return {
-          path: item
+      const fileDataMap = {
+        rootPath: _path,
+        paths: fileData
+      }
+      try {
+        const existData = await useDB('dbOrigin').find({ rootPath: _path })
+        if (!existData.length) {
+          return await useDB('dbOrigin').insert(fileDataMap)
+        } else {
+          const _id = existData[0]._id
+          return await useDB('dbOrigin').update({ _id }, fileDataMap)
         }
-      })
-      useDB().insert(fileDataMap, function(err, newDocs) {
-        console.log(err)
-        console.log(newDocs)
-      })
-      return fileData
+      } catch (err) {
+        log.error(err)
+        return err
+      }
     })
 }
 
