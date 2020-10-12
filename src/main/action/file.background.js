@@ -13,16 +13,18 @@ export function initOpenDir(currentWindow) {
     const _insertData = []
     // FIXME async issue
     if (dirPath) {
-      await dirPath.paths.forEach(async path => {
-        const _currentDirFiles = await readFileFromDir(path)
-        _insertData.push(..._currentDirFiles)
+      await Promise.all(
+        await dirPath.paths.map(async path => {
+          const _currentDirFiles = await readFileFromDir(path)
+          _insertData.push(..._currentDirFiles)
+          return _currentDirFiles
+        })
+      )
+      const insertedData = await useDB('dbOrigin').insert({
+        rootPath: dirPath.rootPath,
+        files: _insertData
       })
-      // const insertedData = await useDB('dbOrigin').insert({
-      //   rootPath: dirPath.rootPath,
-      //   files: _insertData
-      // })
-      console.log('out')
-      event.reply('reply-dir', _insertData)
+      event.reply('reply-dir', insertedData)
     } else {
       event.reply('reply-dir', null)
     }
