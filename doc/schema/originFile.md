@@ -10,7 +10,8 @@
         path: 'D:/abc/defg/music.mp3',
         title: 'music',
         artist: 'abba',
-        album: 'baab'
+        album: 'baab',
+        track: '1'
       }
     ]
   }

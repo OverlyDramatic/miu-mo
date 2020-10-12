@@ -6,6 +6,10 @@ import Datastore from 'nedb-promises'
 let _db = null
 
 export function initNeDB() {
+  const dbFileNameOriginPath = path.join(
+    process.cwd(),
+    process.env.VUE_APP_DATA_ORIGIN_PATH_PATH
+  )
   const dbFileNameOrigin = path.join(
     process.cwd(),
     process.env.VUE_APP_DATA_ORIGIN_FILE_PATH
@@ -15,6 +19,10 @@ export function initNeDB() {
     process.env.VUE_APP_DATA_TARGET_FILE_PATH
   )
   // * 初始化NeDB数据库
+  const dbOriginPath = new Datastore({
+    filename: dbFileNameOriginPath,
+    autoload: true
+  })
   const dbOrigin = new Datastore({
     filename: dbFileNameOrigin,
     autoload: true
@@ -24,6 +32,7 @@ export function initNeDB() {
     autoload: true
   })
   _db = {
+    dbOriginPath,
     dbOrigin,
     dbTarget
   }
