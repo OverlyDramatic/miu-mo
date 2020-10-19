@@ -2,22 +2,22 @@
 import { BrowserWindow } from 'electron'
 import { join as _join } from 'path'
 
-let worker
+let worker = null
 
 export function createWorkerWindow() {
   worker = new BrowserWindow({
-    show: false,
+    // show: false,
+    width: 300,
+    height: 300,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
-    // Load the url of the dev server if in development mode
     worker.loadURL(_join(process.env.WEBPACK_DEV_SERVER_URL, 'worker'))
     if (!process.env.IS_TEST) worker.webContents.openDevTools()
   } else {
-    // Load the index.html when not in development
     worker.loadURL('app://./worker.html')
   }
 
@@ -25,4 +25,8 @@ export function createWorkerWindow() {
     worker = null
   })
   // * init main process
+}
+
+export function snedToWorker(eventName, data) {
+  worker.webContents.send(eventName, data)
 }

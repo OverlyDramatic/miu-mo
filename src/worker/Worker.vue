@@ -3,7 +3,12 @@
 </template>
 
 <script>
+import { initFileWorker } from '@/worker/file.worker'
+
 export default {
-  name: 'Worker'
+  name: 'Worker',
+  created() {
+    initFileWorker()
+  }
 }
 </script>

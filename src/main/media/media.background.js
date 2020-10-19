@@ -1,9 +1,11 @@
 import jsmediatags from 'jsmediatags'
+import { promises as fsPromises } from 'fs'
 
 // * read media info from audio file
-export function readMediaTag(path) {
+export async function readMediaTag(path) {
+  let _file = await fsPromises.readFile(path)
   return new Promise(function(resolve, reject) {
-    jsmediatags.read(path, {
+    jsmediatags.read(_file, {
       onSuccess(tag) {
         resolve(tag)
       },
@@ -11,5 +13,6 @@ export function readMediaTag(path) {
         reject(err)
       }
     })
+    _file = null
   })
 }
