@@ -12,7 +12,8 @@ import { initAction } from '@/main/action/index'
 import { initNeDB } from '@/main/database/database.background'
 // * 初始化日志模块
 import { initLog } from '@/main/log/log.background.js'
-
+// * 引入worker process（一个render）
+import { createWorkerWindow } from '@/worker/main.background'
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -33,7 +34,8 @@ function createWindow() {
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
+      // nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: true
     }
   })
 
@@ -48,7 +50,6 @@ function createWindow() {
   }
 
   win.on('closed', () => {
-    console.log('closed?')
     win = null
   })
 
@@ -56,6 +57,7 @@ function createWindow() {
   initAction(win)
   initNeDB()
   initLog()
+  createWorkerWindow()
 }
 
 // Quit when all windows are closed.

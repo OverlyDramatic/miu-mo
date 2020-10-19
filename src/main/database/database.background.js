@@ -3,19 +3,21 @@
 import path from 'path'
 import Datastore from 'nedb-promises'
 
+import { app } from 'electron'
+
 let _db = null
 
 export function initNeDB() {
   const dbFileNameOriginPath = path.join(
-    process.cwd(),
+    app.getAppPath(),
     process.env.VUE_APP_DATA_ORIGIN_PATH_PATH
   )
   const dbFileNameOrigin = path.join(
-    process.cwd(),
+    app.getAppPath(),
     process.env.VUE_APP_DATA_ORIGIN_FILE_PATH
   )
   const dbFileNameTarget = path.join(
-    process.cwd(),
+    app.getAppPath(),
     process.env.VUE_APP_DATA_TARGET_FILE_PATH
   )
   // * 初始化NeDB数据库

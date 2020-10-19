@@ -1,4 +1,18 @@
 module.exports = {
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      template: 'public/index.html',
+      filename: 'index.html',
+      title: process.env.VUE_APP_NAME
+    },
+    worker: {
+      entry: 'src/worker/main.js',
+      template: 'public/worker.html',
+      filename: 'worker.html',
+      title: 'worker_process'
+    }
+  },
   transpileDependencies: ['vuetify'],
   pluginOptions: {
     electronBuilder: {

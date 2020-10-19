@@ -4,27 +4,42 @@ import { normalize as _normalize, join as _join } from 'path'
 import log from 'electron-log'
 import { useDB } from '@/main/database/database.background'
 import { readMediaTag } from '@/main/media/media.background'
+// * worker
+import { snedToWorker } from '@/worker/main.background'
 
 const regAudioFile = /.+(\.mp3|\.Mp3|\.flac)$/
 
 export function initOpenDir(currentWindow) {
   ipcMain.on('open-dir', async function(event) {
     const dirPath = await openDirDialog(currentWindow)
-    const _insertData = []
+    // const _insertData = []
     // FIXME async issue
     if (dirPath) {
-      await Promise.all(
-        await dirPath.paths.map(async path => {
-          const _currentDirFiles = await readFileFromDir(path)
-          _insertData.push(..._currentDirFiles)
-          return _currentDirFiles
+      const readMediaTags = async (e, data) => {
+        const insertedData = await useDB('dbOrigin').insert({
+          rootPath: dirPath.rootPath,
+          files: data
         })
-      )
-      const insertedData = await useDB('dbOrigin').insert({
-        rootPath: dirPath.rootPath,
-        files: _insertData
-      })
-      event.reply('reply-dir', insertedData)
+        event.reply('reply-dir', insertedData)
+        // * remove event
+        ipcMain.removeListener('to-main-get-media-tag', readMediaTags)
+      }
+      // * send to worker process
+      ipcMain.on('to-main-get-media-tag', readMediaTags)
+      snedToWorker('from-main-get-media-tag', dirPath)
+      // * cache the event
+      // await Promise.all(
+      //   await dirPath.paths.map(async path => {
+      //     const _currentDirFiles = await readFileFromDir(path)
+      //     _insertData.push(..._currentDirFiles)
+      //     return _currentDirFiles
+      //   })
+      // )
+      // const insertedData = await useDB('dbOrigin').insert({
+      //   rootPath: dirPath.rootPath,
+      //   files: _insertData
+      // })
+      // event.reply('reply-dir', insertedData)
     } else {
       event.reply('reply-dir', null)
     }
@@ -73,7 +88,7 @@ async function openDirDialog(currentWindow) {
     )
 }
 
-// TODO 递归读取指定目录下音频文件
+// 递归读取指定目录下音频文件
 // * recursively read dirs
 export async function readDirs(dir) {
   const _dir = _normalize(dir)
@@ -121,7 +136,7 @@ export async function readFileFromDir(dir) {
         return regAudioFile.test(item)
       })
       .map(async item => {
-        // TODO js media tag
+        // js media tag
         const _path = _join(dir, item)
         let mediaInfo
         try {
@@ -136,6 +151,7 @@ export async function readFileFromDir(dir) {
             track: mediaTag.track
           }
         } catch (err) {
+          log.error(err)
           // mediaInfo = null
           return {
             filename: item,
