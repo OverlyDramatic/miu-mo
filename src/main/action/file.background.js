@@ -12,8 +12,6 @@ const regAudioFile = /.+(\.mp3|\.Mp3|\.flac)$/
 export function initOpenDir(currentWindow) {
   ipcMain.on('open-dir', async function(event) {
     const dirPath = await openDirDialog(currentWindow)
-    // const _insertData = []
-    // FIXME async issue
     if (dirPath) {
       const readMediaTags = async (e, data) => {
         const insertedData = await useDB('dbOrigin').insert({
